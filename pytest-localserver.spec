@@ -4,7 +4,7 @@
 #
 Name     : pytest-localserver
 Version  : tip
-Release  : 1
+Release  : 2
 URL      : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Source0  : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Summary  : No detailed summary available
