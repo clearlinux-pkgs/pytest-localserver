@@ -4,7 +4,7 @@
 #
 Name     : pytest-localserver
 Version  : tip
-Release  : 3
+Release  : 4
 URL      : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Source0  : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Summary  : No detailed summary available
@@ -13,6 +13,7 @@ License  : MIT
 Requires: pytest-localserver-license = %{version}-%{release}
 Requires: pytest-localserver-python = %{version}-%{release}
 Requires: pytest-localserver-python3 = %{version}-%{release}
+Requires: Werkzeug
 BuildRequires : Werkzeug
 BuildRequires : buildreq-distutils3
 BuildRequires : pluggy
@@ -61,12 +62,18 @@ python3 components for the pytest-localserver package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1549036374
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1565632153
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto "
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
+export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pytest-localserver
 cp LICENSE %{buildroot}/usr/share/package-licenses/pytest-localserver/LICENSE
