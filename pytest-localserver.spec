@@ -4,7 +4,7 @@
 #
 Name     : pytest-localserver
 Version  : tip
-Release  : 6
+Release  : 7
 URL      : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Source0  : https://bitbucket.org/pytest-dev/pytest-localserver/get/tip.tar.gz
 Summary  : No detailed summary available
@@ -57,13 +57,15 @@ python3 components for the pytest-localserver package.
 
 %prep
 %setup -q -n pytest-dev-pytest-localserver-25bcc0df2252
+cd %{_builddir}/pytest-dev-pytest-localserver-25bcc0df2252
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1565632153
+export SOURCE_DATE_EPOCH=1583210433
+# -Werror is for werrorists
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -76,7 +78,7 @@ python3 setup.py build
 export MAKEFLAGS=%{?_smp_mflags}
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/pytest-localserver
-cp LICENSE %{buildroot}/usr/share/package-licenses/pytest-localserver/LICENSE
+cp %{_builddir}/pytest-dev-pytest-localserver-25bcc0df2252/LICENSE %{buildroot}/usr/share/package-licenses/pytest-localserver/95b76ae58cd414b303c7c8103b89de8293144ade
 python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
@@ -87,7 +89,7 @@ echo ----[ mark ]----
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/pytest-localserver/LICENSE
+/usr/share/package-licenses/pytest-localserver/95b76ae58cd414b303c7c8103b89de8293144ade
 
 %files python
 %defattr(-,root,root,-)
